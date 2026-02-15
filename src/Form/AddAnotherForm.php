@@ -78,7 +78,7 @@ class AddAnotherForm extends FormBase {
     ];
 
     (new Htmx())
-      ->post()//Url::fromRoute(route_name: 'drupal_htmx_examples_add_another_from', options: ['query' => ['count' => $count, '_wrapper_format' => 'drupal_htmx']]))
+      ->post()
       ->target('#edit-text-wrapper')
       // Select is required to pick out the correct element from our response, which will contain the entire form.
       ->select('#wrapper-text_' . $count + 1)

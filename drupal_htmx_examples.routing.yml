@@ -30,6 +30,14 @@ drupal_htmx_examples_add_another_from:
   requirements:
     _permission: "access content"
 
+drupal_htmx_examples_inline_validation_from:
+  path: "/htmx-examples/inline-validation-form"
+  defaults:
+    _form: '\Drupal\drupal_htmx_examples\Form\InlineValidationForm'
+    _title: "HTMX Inline Validation Form"
+  requirements:
+    _permission: "access content"
+
 drupal_htmx_examples_cascading_select_form:
   path: "/htmx-examples/cascading-select"
   defaults:

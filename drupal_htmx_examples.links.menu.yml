@@ -19,6 +19,13 @@ drupal_htmx_examples_infinite_scroll_nodes:
   route_name: drupal_htmx_examples_infinite_scroll_nodes
   weight: 3
 
+drupal_htmx_examples_inline_validation_from:
+  title: 'Inline Validation Form'
+  parent: drupal_htmx_examples
+  description: 'Inline validation using HTMX.'
+  route_name: drupal_htmx_examples_inline_validation_from
+  weight: 4
+
 drupal_htmx_examples_add_another_from:
   title: 'Add Another Form'
   parent: drupal_htmx_examples

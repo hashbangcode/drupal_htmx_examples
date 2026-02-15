@@ -85,13 +85,10 @@ class CascadingSelectForm extends FormBase {
       ->post()
       ->select('*:has(>select[name="month"])')
       ->target('*:has(>select[name="month"])')
-      ->swap('outerHTML')
-      ->applyTo($form['year']);
-
-    (new Htmx())
-      ->post()
-      ->select('*:has(>select[name="day"])')
-      ->target('*:has(>select[name="day"])')
+      // We also target the edit-day ID (which is the select element) with a
+      // out of bounds select to replace the day select. This catches edge
+      // cases where te 29th Feb is selected and a non-leap year is selected.
+      ->selectOob('#edit-day')
       ->swap('outerHTML')
       ->applyTo($form['year']);
 
