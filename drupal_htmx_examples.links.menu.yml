@@ -1,0 +1,41 @@
+drupal_htmx_examples:
+  title: 'Drupal HTMX Examples'
+  parent: system.admin
+  description: 'Examples of using HTMX in Drupal.'
+  route_name: drupal_htmx_examples
+  weight: 1
+
+drupal_htmx_examples_infinite_scroll:
+  title: 'Infinite Scroll'
+  parent: drupal_htmx_examples
+  description: 'Demonstrates a controller that shows infinite scrolling.'
+  route_name: drupal_htmx_examples_infinite_scroll
+  weight: 2
+
+drupal_htmx_examples_infinite_scroll_nodes:
+  title: 'Infinite Scroll With Nodes'
+  parent: drupal_htmx_examples
+  description: 'Demonstrates a controller that shows infinite scrolling using Nodes as a data source.'
+  route_name: drupal_htmx_examples_infinite_scroll_nodes
+  weight: 3
+
+drupal_htmx_examples_add_another_from:
+  title: 'Add Another Form'
+  parent: drupal_htmx_examples
+  description: 'Demonstrates a dynamic form where elements are added.'
+  route_name: drupal_htmx_examples_add_another_from
+  weight: 4
+
+drupal_htmx_examples_cascading_select_form:
+  title: 'HTMX Cascading Select Example Form'
+  parent: drupal_htmx_examples
+  description: 'Demonstrates a cascading select form using HTMX.'
+  route_name: drupal_htmx_examples_cascading_select_form
+  weight: 5
+
+drupal_htmx_examples_select_oob_multiple:
+  title: 'HTMX Select OOB Multiple'
+  parent: drupal_htmx_examples
+  description: 'Demonstrates HTMX integration within a tempalte, and the _htmx_route to run a hx-select-oob example.'
+  route_name: drupal_htmx_examples_select_oob_multiple
+  weight: 5

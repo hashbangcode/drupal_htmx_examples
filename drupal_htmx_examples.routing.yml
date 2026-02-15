@@ -1,0 +1,57 @@
+drupal_htmx_examples:
+  path: '/drupal-htmx-examples'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Drupal HTMX Examples'
+  requirements:
+    _permission: 'access content'
+
+drupal_htmx_examples_infinite_scroll:
+  path: '/drupal-htmx-examples/infinite-scroll'
+  defaults:
+    _title: 'HTMX Infinite Scroll'
+    _controller: '\Drupal\drupal_htmx_examples\Controller\HtmxInfiniteScrollController::action'
+  requirements:
+    _permission: 'access content'
+
+drupal_htmx_examples_infinite_scroll_nodes:
+  path: '/drupal-htmx-examples/infinite-scroll-nodes'
+  defaults:
+    _title: 'HTMX Infinite Scroll With Nodes'
+    _controller: '\Drupal\drupal_htmx_examples\Controller\HtmxInfiniteScrollWithNodesController::action'
+  requirements:
+    _permission: 'access content'
+
+drupal_htmx_examples_add_another_from:
+  path: "/htmx-examples/add-another-form"
+  defaults:
+    _form: '\Drupal\drupal_htmx_examples\Form\AddAnotherForm'
+    _title: "HTMX Add Another Example Form"
+  requirements:
+    _permission: "access content"
+
+drupal_htmx_examples_cascading_select_form:
+  path: "/htmx-examples/cascading-select"
+  defaults:
+    _form: '\Drupal\drupal_htmx_examples\Form\CascadingSelectForm'
+    _title: "HTMX Cascading Select Example Form"
+  requirements:
+    _permission: "access content"
+
+drupal_htmx_examples_select_oob_multiple:
+  path: '/htmx-examples/select-oob-multiple'
+  defaults:
+    _title: 'HTMX Select OOB Multiple'
+    _controller: '\Drupal\drupal_htmx_examples\Controller\HtmxSelectOobMultiple::action'
+  requirements:
+    _permission: 'access content'
+
+drupal_htmx_examples_select_oob_multiple_htmx:
+  path: '/htmx-examples/select-oob-multiple-htmx'
+  defaults:
+    _title: 'HTMX Select OOB Multiple'
+    _controller: '\Drupal\drupal_htmx_examples\Controller\HtmxSelectOobMultiple::htmx'
+  requirements:
+    _permission: 'access content'
+  options:
+    _htmx_route: TRUE

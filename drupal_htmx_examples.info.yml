@@ -1,0 +1,5 @@
+name: "HTMX Examples"
+type: module
+description: "A module to show HTMX in action."
+package: Custom
+core_version_requirement: ^11
