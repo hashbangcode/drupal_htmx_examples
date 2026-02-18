@@ -43,6 +43,14 @@ drupal_htmx_examples_cascading_select_form:
 drupal_htmx_examples_select_oob_multiple:
   title: 'HTMX Select OOB Multiple'
   parent: drupal_htmx_examples
-  description: 'Demonstrates HTMX integration within a tempalte, and the _htmx_route to run a hx-select-oob example.'
+  description: 'Demonstrates HTMX integration within a template, and the _htmx_route to run a hx-select-oob example.'
   route_name: drupal_htmx_examples_select_oob_multiple
   weight: 5
+
+drupal_htmx_examples_display_mode_preview_form:
+  title: 'HTMX Display Mode Preview Form'
+  parent: drupal_htmx_examples
+  description: 'Demonstrates a form.'
+  route_name: drupal_htmx_examples_display_mode_preview_form
+  weight: 6
+

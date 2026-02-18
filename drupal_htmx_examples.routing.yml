@@ -46,6 +46,14 @@ drupal_htmx_examples_cascading_select_form:
   requirements:
     _permission: "access content"
 
+drupal_htmx_examples_display_mode_preview_form:
+  path: "/htmx-examples/display-mode-preview"
+  defaults:
+    _form: '\Drupal\drupal_htmx_examples\Form\DisplayModePreviewForm'
+    _title: "HTMX Display Mode Preview Form"
+  requirements:
+    _permission: "access content"
+
 drupal_htmx_examples_select_oob_multiple:
   path: '/htmx-examples/select-oob-multiple'
   defaults:
