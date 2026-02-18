@@ -95,9 +95,6 @@ class AddAnotherForm extends FormBase {
     return $form;
   }
 
-  public function validateForm(array &$form, FormStateInterface $form_state): void {
-  }
-
   /**
    * {@inheritDoc}
    */
