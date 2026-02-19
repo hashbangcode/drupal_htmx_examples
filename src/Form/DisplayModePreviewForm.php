@@ -141,7 +141,6 @@ class DisplayModePreviewForm extends FormBase {
     return $form;
   }
 
-
   /**
    * {@inheritDoc}
    */
