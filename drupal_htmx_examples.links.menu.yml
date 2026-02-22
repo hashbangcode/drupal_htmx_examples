@@ -19,6 +19,13 @@ drupal_htmx_examples_infinite_scroll_nodes:
   route_name: drupal_htmx_examples_infinite_scroll_nodes
   weight: 3
 
+drupal_htmx_examples_tabbed:
+  title: 'Tabbed content using HTMX and nodes'
+  parent: drupal_htmx_examples
+  description: 'Shows a list of links that will load node content into a div element.'
+  route_name: drupal_htmx_examples_tabbed
+  weight: 4
+
 drupal_htmx_examples_inline_validation_from:
   title: 'Inline Validation Form'
   parent: drupal_htmx_examples

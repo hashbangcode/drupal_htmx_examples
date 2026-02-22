@@ -44,7 +44,20 @@ class CascadingSelectForm extends FormBase {
       '#default_value' => $year,
     ];
 
-    $months = [1 => 'Jan', 2 => 'Feb', 3 => 'Mar', 4 => 'Apr', 5 => 'May', 6 => 'Jun', 7 => 'Jul', 8 => 'Aug', 9 => 'Sep', 10 => 'Oct', 11 => 'Nov', 12 => 'Dec'];
+    $months = [
+      1 => 'Jan',
+      2 => 'Feb',
+      3 => 'Mar',
+      4 => 'Apr',
+      5 => 'May',
+      6 => 'Jun',
+      7 => 'Jul',
+      8 => 'Aug',
+      9 => 'Sep',
+      10 => 'Oct',
+      11 => 'Nov',
+      12 => 'Dec',
+    ];
     $month = $form_state->getValue('month');
 
     $form['month'] = [
@@ -110,7 +123,6 @@ class CascadingSelectForm extends FormBase {
   /**
    * {@inheritDoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state): void {
-  }
+  public function submitForm(array &$form, FormStateInterface $form_state): void {}
 
 }

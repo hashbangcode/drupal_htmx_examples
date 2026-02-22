@@ -90,7 +90,8 @@ class InlineValidationForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     // Just report on the email submitted.
-    $this->messenger()->addMessage($this->t('Submitted email is %email', ['%email' => $form_state->getValue('email', '')]));
+    $this->messenger()
+      ->addMessage($this->t('Submitted email is %email', ['%email' => $form_state->getValue('email', '')]));
   }
 
 }

@@ -1,14 +1,24 @@
 {{ attach_library('core/drupal.htmx') }}
 
+<style>
+  div.content-div {
+    opacity: 1;
+    transition: opacity 1s ease-in;
+  }
+
+  div.content-div.htmx-added {
+    opacity: 0;
+  }
+</style>
+
 <div
-    hx-get="/htmx-examples/select-oob-multiple-htmx"
-    hx-select-oob="#div1,#div2,#div3,#div4,#div5,#div6"
-    hx-trigger="load once"></div>
+    data-hx-get="/htmx-examples/select-oob-multiple-htmx"
+    data-hx-select-oob="#div1,#div2,#div3,#div4,#div5,#div6"
+    data-hx-trigger="load once delay:2s"></div>
 
-
-<div id="div1"></div>
-<div id="div2"></div>
-<div id="div3"></div>
-<div id="div4"></div>
-<div id="div5"></div>
-<div id="div6"></div>
+<div id="div1" class="content-div"></div>
+<div id="div2" class="content-div"></div>
+<div id="div3" class="content-div"></div>
+<div id="div4" class="content-div"></div>
+<div id="div5" class="content-div"></div>
+<div id="div6" class="content-div"></div>

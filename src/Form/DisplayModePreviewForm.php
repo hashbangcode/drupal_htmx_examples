@@ -29,13 +29,6 @@ class DisplayModePreviewForm extends FormBase {
   protected $entityDisplayRepository;
 
   /**
-   * The renderer service.
-   *
-   * @var \Drupal\Core\Render\Renderer
-   */
-  protected $renderer;
-
-  /**
    * {@inheritDoc}
    */
   public static function create(ContainerInterface $container): self {
@@ -43,7 +36,6 @@ class DisplayModePreviewForm extends FormBase {
 
     $instance->entityTypeManager = $container->get('entity_type.manager');
     $instance->entityDisplayRepository = $container->get('entity_display.repository');
-    $instance->renderer = $container->get('renderer');
 
     return $instance;
   }
@@ -118,7 +110,7 @@ class DisplayModePreviewForm extends FormBase {
         '#tag' => 'div',
         '#value' => $this->t('Node not found'),
         '#attributes' => [
-          'id' => 'node-preview-output'
+          'id' => 'node-preview-output',
         ],
       ];
       return $form;
@@ -127,15 +119,13 @@ class DisplayModePreviewForm extends FormBase {
     $viewBuilder = $this->entityTypeManager->getViewBuilder('node');
     $renderArray = $viewBuilder->view($node, $viewMode);
 
-    $output = $this->renderer->renderInIsolation($renderArray);
-
     $form['output'] = [
       '#type' => 'html_tag',
       '#tag' => 'div',
-      '#value' => $output,
       '#attributes' => [
-        'id' => 'node-preview-output'
+        'id' => 'node-preview-output',
       ],
+      'children' => $renderArray,
     ];
 
     return $form;

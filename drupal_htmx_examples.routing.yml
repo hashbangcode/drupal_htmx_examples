@@ -22,6 +22,14 @@ drupal_htmx_examples_infinite_scroll_nodes:
   requirements:
     _permission: 'access content'
 
+drupal_htmx_examples_tabbed:
+  path: '/drupal-htmx-examples/tabbed'
+  defaults:
+    _title: 'HTMX Tabbed'
+    _controller: '\Drupal\drupal_htmx_examples\Controller\TabbedController::action'
+  requirements:
+    _permission: 'access content'
+
 drupal_htmx_examples_add_another_from:
   path: "/htmx-examples/add-another-form"
   defaults:

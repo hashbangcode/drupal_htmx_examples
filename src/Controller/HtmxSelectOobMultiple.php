@@ -3,6 +3,7 @@
 namespace Drupal\drupal_htmx_examples\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Database\Connection;
 use Drupal\Core\Htmx\Htmx;
 use Drupal\Core\Htmx\HtmxRequestInfoTrait;
 use Drupal\Core\Render\HtmlResponse;
@@ -13,7 +14,10 @@ class HtmxSelectOobMultiple extends ControllerBase {
 
   use HtmxRequestInfoTrait;
 
-  public function __construct(protected RequestStack $requestStack) {}
+  public function __construct(
+    protected RequestStack $requestStack,
+    protected Connection $database
+  ) {}
 
   /**
    * {@inheritdoc}
@@ -36,59 +40,33 @@ class HtmxSelectOobMultiple extends ControllerBase {
   public function htmx() {
     $output = [];
 
-    $output['div1'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'p',
-      '#value' => 'div1',
-      '#attributes' => [
-        'id' => 'div1',
-      ]
-    ];
+    for ($i = 1; $i <= 6; $i++) {
+      // Load the most recent nodes from the database, one chunk at a time.
+      $query = $this->database->select('node', 'n')
+        ->fields('n', ['nid']);
+      $query->join('node_field_data', 'nfd', '[nfd].[nid] = [n].[nid] AND [nfd].[langcode] = [n].[langcode]');
+      $query->orderBy('nfd.created', 'desc');
+      $query->where('n.type = :type', [':type' => 'article']);
+      $query->range($i, 1);
 
-    $output['div2'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'p',
-      '#value' => 'div2',
-      '#attributes' => [
-        'id' => 'div2',
-      ]
-    ];
+      $nid = $query->execute()->fetchField();
 
-    $output['div3'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'p',
-      '#value' => 'div3',
-      '#attributes' => [
-        'id' => 'div3',
-      ]
-    ];
+      $nodeStorage = $this->entityTypeManager()->getStorage('node');
+      $node = $nodeStorage->load($nid);
 
-    $output['div4'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'p',
-      '#value' => 'div4',
-      '#attributes' => [
-        'id' => 'div4',
-      ]
-    ];
+      $viewBuilder = $this->entityTypeManager()->getViewBuilder('node');
+      $renderArray = $viewBuilder->view($node, 'teaser');
 
-    $output['div5'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'p',
-      '#value' => 'div5',
-      '#attributes' => [
-        'id' => 'div5',
-      ]
-    ];
-
-    $output['div6'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'p',
-      '#value' => 'div6',
-      '#attributes' => [
-        'id' => 'div6',
-      ]
-    ];
+      $output['div' . $i] = [
+        '#type' => 'html_tag',
+        '#tag' => 'div',
+        '#attributes' => [
+          'id' => 'div' . $i,
+          'class' => 'content-div',
+        ],
+        'children' => $renderArray,
+      ];
+    }
 
     return $output;
   }

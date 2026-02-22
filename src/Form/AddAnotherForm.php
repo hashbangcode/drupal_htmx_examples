@@ -33,7 +33,6 @@ class AddAnotherForm extends FormBase {
    * {@inheritDoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-
     $userInput = $form_state->getUserInput();
 
     $count = (int) ($userInput['text_count'] ?? 1);
@@ -46,23 +45,23 @@ class AddAnotherForm extends FormBase {
       '#type' => 'container',
     ];
 
-  for ($i = 1; $i <= $count; $i++) {
-    $form['text-wrapper']['text_' . $i] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Text %i', ['%i' => $i]),
-      '#default_value' => isset($userInput['text_' . $i]) ? $userInput['text_' . $i] : NULL,
-      '#wrapper_attributes' => [
-        'id' => 'wrapper-text_' . $i,
-      ]
-    ];
-  }
+    for ($i = 1; $i <= $count; $i++) {
+      $form['text-wrapper']['text_' . $i] = [
+        '#type' => 'textfield',
+        '#title' => $this->t('Text %i', ['%i' => $i]),
+        '#default_value' => isset($userInput['text_' . $i]) ? $userInput['text_' . $i] : NULL,
+        '#wrapper_attributes' => [
+          'id' => 'wrapper-text_' . $i,
+        ],
+      ];
+    }
 
     $form['text_count'] = [
       '#type' => 'hidden',
       '#value' => $count,
       '#attributes' => [
         'id' => [
-          'text-count'
+          'text-count',
         ],
       ],
     ];

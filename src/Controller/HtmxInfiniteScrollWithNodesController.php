@@ -82,7 +82,12 @@ class HtmxInfiniteScrollWithNodesController extends ControllerBase {
           '#tag' => 'div',
         ];
         $htmx = new Htmx();
-        $htmx->get(Url::fromRoute(route_name: 'drupal_htmx_examples_infinite_scroll_nodes', options: ['query' => ['page' => ++$page, '_wrapper_format' => 'drupal_htmx']]))
+        $htmx->get(Url::fromRoute(route_name: 'drupal_htmx_examples_infinite_scroll_nodes', options: [
+          'query' => [
+            'page' => ++$page,
+            '_wrapper_format' => 'drupal_htmx',
+          ],
+        ]))
           // Setting the swap value to outerHTML means that we replace the div
           // with the result of the HTMX request.
           ->swap('outerHTML')
