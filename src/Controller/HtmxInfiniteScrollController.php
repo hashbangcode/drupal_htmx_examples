@@ -5,11 +5,12 @@ namespace Drupal\drupal_htmx_examples\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Htmx\Htmx;
 use Drupal\Core\Htmx\HtmxRequestInfoTrait;
-use Drupal\Core\Render\HtmlResponse;
-use Drupal\Core\Render\MainContent\HtmxRenderer;
 use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+/**
+ * Class to show infinite scrolling using HTMX.
+ */
 class HtmxInfiniteScrollController extends ControllerBase {
 
   use HtmxRequestInfoTrait;

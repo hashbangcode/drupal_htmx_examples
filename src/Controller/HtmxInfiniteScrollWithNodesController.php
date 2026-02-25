@@ -11,6 +11,9 @@ use Drupal\Core\Htmx\HtmxRequestInfoTrait;
 use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+/**
+ * Class to show infinite scrolling with nodes.
+ */
 class HtmxInfiniteScrollWithNodesController extends ControllerBase {
 
   use HtmxRequestInfoTrait;

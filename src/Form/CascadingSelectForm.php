@@ -15,15 +15,6 @@ class CascadingSelectForm extends FormBase {
   /**
    * {@inheritDoc}
    */
-  public static function create(ContainerInterface $container): self {
-    $instance = new static($container);
-
-    return $instance;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
   public function getFormId() {
     return 'htmx_cascade_select_form';
   }

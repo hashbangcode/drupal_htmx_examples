@@ -4,10 +4,7 @@ namespace Drupal\drupal_htmx_examples\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
-use Drupal\Core\Htmx\Htmx;
 use Drupal\Core\Htmx\HtmxRequestInfoTrait;
-use Drupal\Core\Render\HtmlResponse;
-use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class HtmxSelectOobMultiple extends ControllerBase {

@@ -6,11 +6,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Htmx\Htmx;
 use Drupal\Core\Htmx\HtmxRequestInfoTrait;
-use Drupal\Core\Render\HtmlResponse;
-use Drupal\Core\Render\MainContent\HtmxRenderer;
-use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Controller to show a tabbed region on the page using HTMX.
