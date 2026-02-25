@@ -7,6 +7,9 @@ use Drupal\Core\Database\Connection;
 use Drupal\Core\Htmx\HtmxRequestInfoTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+/**
+ * Controller to show HTMX used inside a template.
+ */
 class HtmxSelectOobMultiple extends ControllerBase {
 
   use HtmxRequestInfoTrait;
@@ -23,6 +26,12 @@ class HtmxSelectOobMultiple extends ControllerBase {
     return $this->requestStack->getCurrentRequest();
   }
 
+  /**
+   * Callback for the route drupal_htmx_examples_select_oob_multiple.
+   *
+   * @return array
+   *   The render array.
+   */
   public function action() {
     $output = [];
 
@@ -34,6 +43,12 @@ class HtmxSelectOobMultiple extends ControllerBase {
     return $output;
   }
 
+  /**
+   * Callback for the route drupal_htmx_examples_select_oob_multiple_htmx.
+   *
+   * @return array
+   *   The render array.
+   */
   public function htmx() {
     $output = [];
 

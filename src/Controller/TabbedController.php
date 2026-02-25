@@ -10,6 +10,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Controller to show a tabbed region on the page using HTMX.
+ *
+ * This controller does its work by directly including the HTMX library
+ * and making use of the main_content_renderer.htmx service to render the
+ * output. It is not recommended to do things this way, but shows that it is
+ * possible to do.
  */
 class TabbedController extends ControllerBase {
 
@@ -61,6 +66,9 @@ class TabbedController extends ControllerBase {
 
   /**
    * Callback for the route drupal_htmx_examples_tabbed.
+   *
+   * @return array|\Drupal\Core\Render\HtmlResponse|\Symfony\Component\HttpFoundation\Response
+   *   The render array, or a HTMX renderer response.
    */
   public function action() {
     $output = [];
@@ -120,13 +128,11 @@ class TabbedController extends ControllerBase {
         ],
       ];
 
-      $trigger = 'click';
-
       (new Htmx())
         ->get()
         ->swap('outerHTML')
         ->target('#detail')
-        ->trigger($trigger)
+        ->trigger('click')
         ->applyTo($items[$id]);
     }
 

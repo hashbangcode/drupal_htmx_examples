@@ -9,7 +9,7 @@ use Drupal\Core\Htmx\Htmx;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Form to show a.
+ * Form to show nodes being rendered in different view modes.
  */
 class DisplayModePreviewForm extends FormBase {
 

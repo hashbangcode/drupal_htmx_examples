@@ -30,6 +30,12 @@ class HtmxInfiniteScrollWithNodesController extends ControllerBase {
     return $this->requestStack->getCurrentRequest();
   }
 
+  /**
+   * Callback for the route drupal_htmx_examples_infinite_scroll_nodes.
+   *
+   * @return array
+   *   The render array.
+   */
   public function action() {
     $output = [];
 
