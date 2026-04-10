@@ -190,6 +190,7 @@ class TabbedController extends ControllerBase {
     $query->join('node_field_data', 'nfd', '[nfd].[nid] = [n].[nid] AND [nfd].[langcode] = [n].[langcode]');
     $query->orderBy('nfd.created', 'desc');
     $query->where('n.type = :type', [':type' => 'article']);
+    $query->where('nfd.status = 1');
     $query->range($nth, 1);
     $nid = $query->execute()->fetchField();
 
