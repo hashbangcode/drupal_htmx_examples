@@ -36,18 +36,18 @@ class CascadingSelectForm extends FormBase {
     ];
 
     $months = [
-      1 => 'Jan',
-      2 => 'Feb',
-      3 => 'Mar',
-      4 => 'Apr',
-      5 => 'May',
-      6 => 'Jun',
-      7 => 'Jul',
-      8 => 'Aug',
-      9 => 'Sep',
-      10 => 'Oct',
-      11 => 'Nov',
-      12 => 'Dec',
+      1 => $this->t('Jan'),
+      2 => $this->t('Feb'),
+      3 => $this->t('Mar'),
+      4 => $this->t('Apr'),
+      5 => $this->t('May'),
+      6 => $this->t('Jun'),
+      7 => $this->t('Jul'),
+      8 => $this->t('Aug'),
+      9 => $this->t('Sep'),
+      10 => $this->t('Oct'),
+      11 => $this->t('Nov'),
+      12 => $this->t('Dec'),
     ];
     $month = $form_state->getValue('month');
 
@@ -114,6 +114,17 @@ class CascadingSelectForm extends FormBase {
   /**
    * {@inheritDoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state): void {}
+  public function submitForm(array &$form, FormStateInterface $form_state): void {
+    $year = $form_state->getValue('year');
+    $month = $form_state->getValue('month');
+    $day = $form_state->getValue('day');
+
+    $args = [
+      '%year' => $year,
+      '%month' => $month,
+      '%day' => $day,
+    ];
+    $this->messenger()->addMessage($this->t('Submitted form with values year: %year, month: %month, day: %day', $args));
+  }
 
 }
