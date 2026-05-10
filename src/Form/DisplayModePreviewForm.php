@@ -2,6 +2,7 @@
 
 namespace Drupal\drupal_htmx_examples\Form;
 
+use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -18,24 +19,22 @@ class DisplayModePreviewForm extends FormBase {
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityTypeManager;
+  protected EntityTypeManagerInterface $entityTypeManager;
 
   /**
    * The entity display repository service.
    *
-   * @var \Drupal\Core\Entity\EntityDisplayRepository
+   * @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface
    */
-  protected $entityDisplayRepository;
+  protected EntityDisplayRepositoryInterface $entityDisplayRepository;
 
   /**
    * {@inheritDoc}
    */
   public static function create(ContainerInterface $container): self {
     $instance = new static($container);
-
     $instance->entityTypeManager = $container->get('entity_type.manager');
     $instance->entityDisplayRepository = $container->get('entity_display.repository');
-
     return $instance;
   }
 
@@ -50,11 +49,12 @@ class DisplayModePreviewForm extends FormBase {
    * {@inheritDoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $userInput = $form_state->getUserInput();
+    // Get the input from the user, if any is set, setting some sensible
+    // defaults.
+    $nid = $form_state->getValue('node_id', '');
+    $viewMode = $form_state->getValue('view_mode', 'full');
 
-    $nid = $form_state->getValue('node_id', $userInput['node_id'] ?? '');
-    $viewMode = $form_state->getValue('view_mode', $userInput['view_mode'] ?? 'teaser');
-
+    // The node ID input field.
     $form['node_id'] = [
       '#type' => 'number',
       '#title' => $this->t('Node ID'),
@@ -67,15 +67,17 @@ class DisplayModePreviewForm extends FormBase {
       ->target('#node-preview-output')
       // Select is required to pick out the correct element from our response, which will contain the entire form.
       ->select('#node-preview-output')
+      ->swap('outerHTML')
       ->applyTo($form['node_id']);
 
+    // Load the view modes for the node.
     $viewModes = $this->entityDisplayRepository->getViewModes('node');
-
     $viewModesSelection = [];
     foreach ($viewModes as $id => $mode) {
       $viewModesSelection[$id] = $mode['label'];
     }
 
+    // Create the view mode selection field.
     $form['view_mode'] = [
       '#title' => $this->t('View modes'),
       '#type' => 'select',
@@ -89,21 +91,26 @@ class DisplayModePreviewForm extends FormBase {
       ->target('#node-preview-output')
       // Select is required to pick out the correct element from our response, which will contain the entire form.
       ->select('#node-preview-output')
+      ->swap('outerHTML')
       ->applyTo($form['view_mode']);
 
+    // Create a placeholder for the node output.
     $form['output'] = [
       '#markup' => '<div id="node-preview-output"></div>',
     ];
 
     if ($nid === '') {
+      // If no node ID is set then return here.
       return $form;
     }
 
-    // node ID
+    // Load the node using the entered ID.
     $nodeStorage = $this->entityTypeManager->getStorage('node');
     $node = $nodeStorage->load($nid);
 
     if (!$node) {
+      // If we don't have a node (the user might have entered a node ID that
+      // doesn't exist) then we return here with a simple message.
       $form['output'] = [
         '#type' => 'html_tag',
         '#tag' => 'div',
@@ -115,9 +122,11 @@ class DisplayModePreviewForm extends FormBase {
       return $form;
     }
 
+    // If we have a node, then render it using the selected view mode and
+    // inject that into the 'children' element of the output form element. This
+    // will render the node as the form element is rendered.
     $viewBuilder = $this->entityTypeManager->getViewBuilder('node');
     $renderArray = $viewBuilder->view($node, $viewMode);
-
     $form['output'] = [
       '#type' => 'html_tag',
       '#tag' => 'div',
